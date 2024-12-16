@@ -62,8 +62,8 @@
                 <h1 class="text-4xl font-bold">Book an Online Appointment</h1>
                 <div>
                     <label for="datepicker" class="block text-lg font-medium text-gray-700">Select a date</label>
-                    <div id="datepicker-inline" name="appointment_date" inline-datepicker
-                        data-date="{{ date('d') }}"></div>
+                    <div id="datepicker-inline" name="appointment_date" inline-datepicker datepicker-format="mm-dd-yyyy"
+                        data-date="05-{{ $dateSekarang }}-2024"></div>
                 </div>
             </div>
 
@@ -82,13 +82,20 @@
                                 </p>
                                 <p>For dose <span class="font-semibold">{{ $place->vaccineId }}</span></p>
                             </div>
-                            <form method="POST" action="{{route('createTransaction')}}">
+                            <form method="POST" action="{{ route('createTransaction') }}">
                                 @csrf
+<<<<<<< HEAD
                                 <input type="hidden" name="appointmentId" value="{{$place->appointmentId}}">
+=======
+                                <input type="hidden" name="userId" value="{{ $userID }}">
+                                <input type="hidden" name="appointmentId" value="{{ $place->appointmentId }}">
+>>>>>>> 585d4ce (feat: perubahan alwi pokoknya)
                                 <input type="hidden" name="finalPrice" value="{{ $place->vaccine->price }}">
                                 <input type="hidden" name="paymentType" value="credit_card">
-                                <input type="hidden" name="appointmentDate" value="{{$date}}" id="appointmentDateInput"> <!-- Tanggal janji temu statis -->
-                                <input type="hidden" name="paymentDate" value="{{$today}}" id="paymentDateInput"> 
+                                <input type="hidden" name="appointmentDate" value="{{ $date }}"
+                                    id="appointmentDateInput"> <!-- Tanggal janji temu statis -->
+                                <input type="hidden" name="paymentDate" value="{{ $today }}"
+                                    id="paymentDateInput">
                                 <button type="submit">Book</button>
                             </form>
                         </li>
@@ -115,10 +122,15 @@
                         const formattedDay = String(selectedDay);
 
                         // Construct the new URL
+<<<<<<< HEAD
                         const newUrl = `/appointment/${vaccineId}/${selectedDay}`; // Hanya menggunakan hari
+=======
+                        const newUrl =
+                            `/appointment/${userId}/${vaccineId}/${selectedDay}`; // Hanya menggunakan hari
+>>>>>>> 585d4ce (feat: perubahan alwi pokoknya)
                         window.location.href = newUrl; // Redirect to the new URL
                     });
-                }); 
+                });
             </script>
     </section>
 

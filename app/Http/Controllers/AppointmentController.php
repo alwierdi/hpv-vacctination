@@ -20,6 +20,7 @@ class AppointmentController extends Controller
             $message = "Please Select an Appointment Date";
             return view('pages.appointment', compact('places', 'message', 'vaccineId', 'date'));
         }
+        $dateSekarang = $date;
         $today = Carbon::now()->format('Y-m-d');
         // Ambil semua tempat yang tersedia berdaan tanggal dan vaccineID
         $places = Appointment::with('vaccine')
@@ -37,7 +38,11 @@ class AppointmentController extends Controller
             ]);
         }
 
+<<<<<<< HEAD
         return view('pages.appointment', compact('places', 'message', 'vaccineId', 'date', 'today'));
+=======
+        return view('pages.appointment', compact('places', 'message', 'userID', 'vaccineId', 'date', 'today', 'dateSekarang'));
+>>>>>>> 585d4ce (feat: perubahan alwi pokoknya)
     }
 
     // Metode untuk melakukan checkout
@@ -54,7 +59,7 @@ class AppointmentController extends Controller
         ]);
         // Ambil data dari request
         $data = $request->all();
-        
+
         try {
             $appointment = Appointment::findOrFail($data['appointmentId']);
             $transaction = Transaction::create([
@@ -85,7 +90,7 @@ class AppointmentController extends Controller
                 //     'email' => Auth::user()->email,
                 // )
             );
-            
+
             $snapToken = \Midtrans\Snap::getSnapToken($params);
             $transaction->snap_token = $snapToken;
             $transaction->save();
@@ -114,10 +119,10 @@ class AppointmentController extends Controller
     }
 
 
-public function delete(Appointment $id)
-{
-    $id->delete();
-    return redirect()->route(route: 'index.appointment')
-            ->with('success','Data berhasil di hapus' );
-}
+    public function delete(Appointment $id)
+    {
+        $id->delete();
+        return redirect()->route(route: 'index.appointment')
+            ->with('success', 'Data berhasil di hapus');
+    }
 }

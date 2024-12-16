@@ -48,7 +48,7 @@
             @foreach ($vaccines as $item)
                 <div class="col-md-4">
                     <div class="card border-0 shadow-sm h-100"
-                        style="border: 1px solid black; transition: background 0.3s, color 0.3s;"
+                        style="border: 1px solid black;"
                         onmouseover="this.style.background='linear-gradient(to bottom, #0E8570, #5DB37C)'; this.style.color='white'; 
                                  this.querySelector('.price').style.color='white'; 
                                  this.querySelector('.description').style.color='white';"
@@ -74,4 +74,3 @@
         </div>
     </div>
 @endsection
-
